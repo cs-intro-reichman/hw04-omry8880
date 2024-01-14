@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class StringOps {
     ////////////////////////////////////////////////////////////
     //////                                               ///////
@@ -22,7 +24,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase(" tWo    wordS"));
+
     }
 
     public static String capVowelsLowRest (String string) {
@@ -86,7 +88,23 @@ public class StringOps {
     }
 
     public static int[] allIndexOf (String string, char chr) {
-        // Write your code here:
-        return new int[1];
+        int counter = 0;
+
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                counter++;
+            }
+        }
+
+        int[] arr = new int[counter];
+        int secondCounter = 0;
+
+        for (int i = 0; i < string.length(); i++) {
+            if (string.charAt(i) == chr) {
+                arr[secondCounter] = i;
+                secondCounter++;
+            }
+        }
+        return arr;
     }
 }
