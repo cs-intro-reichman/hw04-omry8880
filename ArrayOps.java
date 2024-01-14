@@ -1,6 +1,6 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] input = {7, 5, 4, 3, -12};
+        int[] input = {1,2,3};
         System.out.println("Is sorted: " + isSorted(input));
     }
 
@@ -102,6 +102,11 @@ public class ArrayOps {
                 break;
             }
 
+        }
+
+        index = 0;
+        if (array[index] < array[index+1]) { // if there are no equal elements of an array, the array won't enter the while loop. So this is a quick workaround.
+            isIncreasing = true;
         }
 
         for (int i = 0; i < array.length - 1; i++) {
