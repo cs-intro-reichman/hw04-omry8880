@@ -22,7 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(capVowelsLowRest("One two tHRee world"));
+        System.out.println(camelCase("    Intro to coMPUter sCIEncE"));
     }
 
     public static String capVowelsLowRest (String string) {
@@ -43,8 +43,43 @@ public class StringOps {
     }
 
     public static String camelCase (String string) {
-        // Write your code here:
-        return "";
+        String modified = "";
+        String modifiedNoWhitespace = "";
+        boolean firstWord = false;
+        int index = 0;
+
+        while (string.charAt(index) == ' ') {
+            index++;
+        }
+
+        for (int i = index; i < string.length(); i++) {
+            if (string.charAt(i) >= 'A' && string.charAt(i) <= 'Z' && !firstWord) {
+                modified += (char) ((int) string.charAt(i) + 32);
+            }
+            else if (string.charAt(i) == ' ') {
+                firstWord = true;
+            }
+            else if (i != 0 && string.charAt(i - 1) == ' ') {
+                if (!(string.charAt(i) >= 'A' && string.charAt(i) <= 'Z')) {
+                    modified += (char) ((int) string.charAt(i) - 32);
+                }
+            }
+            else if (string.charAt(i) >= 'A' && string.charAt(i) <= 'Z') {
+                modified += (char) ((int) string.charAt(i) + 32);
+            }
+            else {
+                modified += string.charAt(i);
+            }
+        }
+
+        for (int i = 0; i < modified.length(); i++) {
+            if (modified.charAt(i) != ' ') {
+                modifiedNoWhitespace += modified.charAt(i);
+            }
+        }
+
+
+        return modifiedNoWhitespace;
     }
 
     public static int[] allIndexOf (String string, char chr) {
