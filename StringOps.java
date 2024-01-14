@@ -22,7 +22,7 @@ public class StringOps {
     //////                                               ///////
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
-        System.out.println(camelCase("    Intro to coMPUter sCIEncE"));
+        System.out.println(camelCase(" tWo    wordS"));
     }
 
     public static String capVowelsLowRest (String string) {
@@ -42,7 +42,7 @@ public class StringOps {
         return modified;
     }
 
-    public static String camelCase (String string) {
+    public static String camelCase (String string) { //  tWo    wordS
         String modified = "";
         String modifiedNoWhitespace = "";
         boolean firstWord = false;
@@ -60,8 +60,11 @@ public class StringOps {
                 firstWord = true;
             }
             else if (i != 0 && string.charAt(i - 1) == ' ') {
-                if (!(string.charAt(i) >= 'A' && string.charAt(i) <= 'Z')) {
+                if (!(string.charAt(i) >= 'A' && string.charAt(i) <= 'Z') && firstWord) {
                     modified += (char) ((int) string.charAt(i) - 32);
+                }
+                else {
+                    modified += (char) ((int) string.charAt(i));
                 }
             }
             else if (string.charAt(i) >= 'A' && string.charAt(i) <= 'Z') {
