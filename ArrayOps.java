@@ -1,9 +1,7 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] input = { 2,8,3,7,8 };
-        int[] input2 = { 1, 2, 4, 3, 5, 6, 2 };
-        System.out.println("Second max value: " + secondMaxValue(input));
-        // System.out.println("Contains the same elements: " + containsTheSameElements(input, input2));
+        int[] input = {7, 5, 4, 3, -12};
+        System.out.println("Is sorted: " + isSorted(input));
     }
 
     public static int findMissingInt(int[] array) {
@@ -91,14 +89,30 @@ public class ArrayOps {
         return true;
     }
 
-    public static boolean isSorted(int[] array) {
-        boolean decreases = false;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] < array[i + 1]) {
-                decreases = true;
+    public static boolean isSorted(int[] array) { // 1, 2, 3, 1
+        boolean isIncreasing = false;
+        int index = 0;
+
+        while (array[index] == array[index+1]) { // Finds if the list is sorted increasingly or decreasingly
+            index++;
+            if (!(array[index] == array[index+1])) {
+                if (array[index] < array[index+1]) {
+                    isIncreasing = true;
+                }
                 break;
             }
+
         }
+
+        for (int i = 0; i < array.length - 1; i++) {
+            if (isIncreasing && array[i] > array[i+1]) {
+                return false;
+            } else if (!isIncreasing && array[i] < array[i+1]) {
+                return false;
+            }
+
+        }
+        
         return true;
     }
 
