@@ -1,8 +1,8 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] input = { 0, 1, 2, 3, 4, 6 };
+        int[] input = { 2,8,3,7,8 };
         int[] input2 = { 1, 2, 4, 3, 5, 6, 2 };
-        // System.out.println("Second max value: " + secondMaxValue(input));
+        System.out.println("Second max value: " + secondMaxValue(input));
         // System.out.println("Contains the same elements: " + containsTheSameElements(input, input2));
     }
 
@@ -40,6 +40,8 @@ public class ArrayOps {
     public static int secondMaxValue(int[] array) {
         int max = 0;
         int secondMax = 0;
+        boolean unique = false;
+        int[] arrWithoutMax = new int[array.length];
 
         for (int i = 0; i < array.length; i++) {
             if (array[i] > max) {
@@ -47,9 +49,20 @@ public class ArrayOps {
             }
         }
 
-        for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] != max && array[i + 1] != max) {
-                secondMax = Math.max(array[i], array[i + 1]);
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] != max) {
+                arrWithoutMax[i] = array[i];
+            } else if (!unique) {
+                unique = true;
+                arrWithoutMax[i] = 0;
+            } else {
+                arrWithoutMax[i] = array[i];
+            }
+        }
+
+        for (int i = 0; i < arrWithoutMax.length; i++) {
+            if (secondMax < arrWithoutMax[i]) {
+                secondMax = arrWithoutMax[i];
             }
         }
 
