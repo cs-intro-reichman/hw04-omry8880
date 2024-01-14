@@ -1,19 +1,40 @@
 public class ArrayOps {
     public static void main(String[] args) {
-        int[] input = { 1, 2, 3, 4, 5, 6 };
+        int[] input = { 0, 1, 2, 3, 4, 6 };
         int[] input2 = { 1, 2, 4, 3, 5, 6, 2 };
-        // System.out.println("Missing int: " + findMissingInt(input));
         // System.out.println("Second max value: " + secondMaxValue(input));
-        System.out.println("Contains the same elements: " + containsTheSameElements(input, input2));
+        // System.out.println("Contains the same elements: " + containsTheSameElements(input, input2));
     }
 
     public static int findMissingInt(int[] array) {
-        int missingNum = 0;
-        for (int i = 0; i < array.length; i++) {
-            if (array[i] != i + 1)
-                missingNum = i + 1;
+        int max = 0;
+        boolean found = false;
+
+        if (array.length == 1) { // if array's length is 1, return the next number
+            return array[0] + 1;
         }
-        return missingNum;
+
+        for (int i = 0; i < array.length; i++) {
+            if (max < array[i]) {
+                max = array[i];
+            }
+        }
+
+        for (int i = 0; i < array.length; i++) {
+            found = false;
+            for (int j = 0; j < array.length; j++) {
+                if (max - array[j] == array[i]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return max - array[i];
+            }
+        }
+
+        
+        return -1;
     }
 
     public static int secondMaxValue(int[] array) {
